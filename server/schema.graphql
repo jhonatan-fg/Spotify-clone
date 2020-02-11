@@ -3,7 +3,7 @@ scalar Date
 directive @auth on FIELD_DEFINITION | FIELD
 
 type Query   {
-    allUsers(is_active:Boolean):[User]
+    allUsers:[User]
     getOneUser(id:ID,email:String):User
     allEvents:[Event]
     getEvent(id:ID):Event
@@ -42,7 +42,6 @@ type Event{
     created_by:User!
     banner:String
     tags:[String]
-    is_active:Boolean!
 
 }
 
@@ -84,7 +83,6 @@ input UserUpdate {
     birth_date:String
     gender:GENDER
     photo:Upload
-    is_active: Boolean
 }
 
 input EventAdd{

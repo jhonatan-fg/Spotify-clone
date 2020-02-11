@@ -14,10 +14,6 @@ const ArtistSchema  = new Schema({
 	banner:{
 		type: String
 	},
-	tags:{
-		type:[String]
-	}
-
-},{timestamps:true} );
+}, {timestamps:true} );
 
 module.exports = mongoose.model('artist',ArtistSchema);

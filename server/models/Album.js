@@ -15,14 +15,9 @@ const AlbumSchema  = new Schema({
 	banner:{
 		type: String
 	},
-	tags:{
+	genre:{
 		type:[String]
 	},
-	is_active:{
-		type: Boolean,
-		default: true
-	}
-
-},{timestamps:true} );
+}, {timestamps:true} );
 
 module.exports = mongoose.model('album',AlbumSchema);
