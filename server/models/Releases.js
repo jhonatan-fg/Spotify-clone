@@ -2,22 +2,26 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 
-const AlbumSchema  = new Schema({
+const ReleaseSchema  = new Schema({
+	cover:{
+		type: String
+	},
 	title :{
 		type:String,
 		required:true
 	},
-	description :{
+	year :{
 		type:String,
 		required:true,
 	},
 	date :Date,
-	banner:{
-		type: String
+	songs:{
+		type:String,
+		required:true,
 	},
-	genre:{
+	duration:{
 		type:[String]
 	},
 }, {timestamps:true} );
 
-module.exports = mongoose.model('album',AlbumSchema);
+module.exports = mongoose.model('releases',ReleaseSchema);

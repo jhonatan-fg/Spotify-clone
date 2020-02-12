@@ -5,8 +5,8 @@ directive @auth on FIELD_DEFINITION | FIELD
 type Query   {
     allUsers:[User]
     getOneUser(id:ID,email:String):User
-    allEvents:[Event]
-    getEvent(id:ID):Event
+    allArtist:[Artist]
+    getOneArtist(id:ID):Artist
 }
 
 type Mutation {
@@ -14,11 +14,8 @@ type Mutation {
     login(password:String!,email:String!):Auth
     updateUser(data:UserUpdate!,id:ID!):User @auth    
     deleteUser(id:ID!):Message @auth
-    createEvent(data:EventAdd!):Event @auth
-    updateEvent(data:EventEdit!):Event @auth
-    deleteEvent(id:ID):Message @auth
-    joinEvent(id:ID):Message @auth
-    leaveEvent(id:ID):Message @auth
+    newArtist(dataA:ArtistAdd!):Artist
+    deleteArtist(id:ID):Message
 }
 
 type User{
@@ -32,26 +29,21 @@ type User{
     photo:String
 }
 
-type Event{
+type Artist{
     _id:ID!
-    title:String!
-    description:String!
-    date:Date
-    address:Address
-    assistants:[User]
-    created_by:User!
-    banner:String
-    tags:[String]
-
+    name:String!
+    description:String
+    releases:[Release]
+    cover:String
 }
 
-type Address {
-    street:String!
-    number:String
-    city:String
-    state:String
-    country:String
-    zip:String
+type Release {
+    cover:String
+    title:String!
+    year:String!
+    date:Date!
+    songs:String!
+    duration:String
 }
 
 type Auth {
@@ -85,25 +77,14 @@ input UserUpdate {
     photo:Upload
 }
 
-input EventAdd{
-    title:String!
-    description:String!
-    date:Date
-    address:AddressAdd
-    banner:Upload #Nuevo scalar
-    tags:[String]
-}
-
-input EventEdit{
-    title:String
+input ArtistAdd {
+    name:String!
     description:String
-    date:String
-    address:AddressEdit
-    banner:String
-    tags:[String]
+    #releases:[Release]
+    cover:String
 }
 
-input AddressAdd {
+input ReleaseAdd {
     street:String
     number:String
     city:String
@@ -112,7 +93,7 @@ input AddressAdd {
     zip:String
 }
 
-input AddressEdit {
+input ReleaseEdit {
     street:String
     number:String
     city:String

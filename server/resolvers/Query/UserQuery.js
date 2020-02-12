@@ -2,7 +2,6 @@ const { getUsers, getUserByEmail, getUserByID } = require('../../services/UserSe
 
 
 const allUsers = (root,args,context,info) => {
-	console.log(args);
 	return getUsers(args);
 };
 
@@ -16,6 +15,7 @@ const getOneUser = (root,args,context,info)  => {
 	}
 
 };
+
 
 module.exports = {
 	allUsers,

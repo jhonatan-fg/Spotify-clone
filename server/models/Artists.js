@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 const Schema = mongoose.Schema;
 
 const ArtistSchema  = new Schema({
@@ -11,9 +10,12 @@ const ArtistSchema  = new Schema({
 		type:String,
 		required:true,
 	},
-	banner:{
-		type: String
+	cover:{
+		type:String
 	},
-}, {timestamps:true} );
+	releases:{
+		type:Schema.Types.ObjectId,
+		ref:'releases'
+	},});
 
-module.exports = mongoose.model('artist',ArtistSchema);
+module.exports = mongoose.model('artists',ArtistSchema);
